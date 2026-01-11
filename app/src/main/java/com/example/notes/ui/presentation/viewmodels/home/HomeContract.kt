@@ -17,6 +17,7 @@ object HomeContract {
     // Intent - All possible user actions
     sealed interface HomeIntent : UiIntent {
         data class DeleteNote(val id: String) : HomeIntent
+//        data class EditNote(val id: String) : HomeIntent
     }
 
     // Effect - One-time side effects

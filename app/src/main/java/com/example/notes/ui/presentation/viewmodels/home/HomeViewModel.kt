@@ -22,6 +22,7 @@ class HomeViewModel @Inject constructor(
     override suspend fun handleIntent(intent: HomeContract.HomeIntent) {
         when (intent) {
             is HomeContract.HomeIntent.DeleteNote -> deleteNote(intent.id)
+//            is HomeContract.HomeIntent.EditNote -> editNote(intent.id)
         }
     }
 
@@ -49,6 +50,10 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             repository.deleteNote(id)
         }
+    }
+
+    private fun editNote(id: String) {
+
     }
 
 }

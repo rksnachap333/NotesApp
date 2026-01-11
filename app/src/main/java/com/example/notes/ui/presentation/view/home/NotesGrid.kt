@@ -36,8 +36,8 @@ fun NotesGrid(
             NoteGridItem(
                 note = note,
                 onClick = { onNoteClick(note) },
-                onDeleteClick = {
-                    onSendIntent(HomeContract.HomeIntent.DeleteNote(note.id))
+                onSendIntent = {
+                    onSendIntent(it)
                 }
             )
         }

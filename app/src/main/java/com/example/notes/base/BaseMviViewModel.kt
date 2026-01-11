@@ -18,25 +18,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
-/**
- *
- * Base MVI ViewModel
- *
- * MVI Components:
- * - Model (State): Immutable UI state - single source of truth
- * - View: Composable UI that observes state and sends intents
- * - Intent: User actions/events - processed sequentially
- *
- * Key Design Decisions:
- * - Channel.UNLIMITED for intents: User actions must never be dropped
- * - trySend() instead of send(): Non-blocking for UI thread
- * - StateFlow for state: Always has current value, survives config changes
- * - Channel for effects: One-time events consumed once
- *
- * @param State Type representing UI State
- * @param Intent Type representing User Intents (Actions)
- * @param Effect Type representing Side Effects, if not available use type as Nothing
- */
 abstract class BaseMviViewModel<State : UiState, Intent : UiIntent, Effect : UiEffect> : ViewModel() {
 
     // Initial state - must be provided by subclass

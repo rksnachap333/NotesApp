@@ -9,12 +9,10 @@ import com.example.notes.domain.NoteRepository
 import com.example.notes.domain.enums.SyncStatus
 import com.example.notes.domain.remote.NoteRemoteDataSource
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -31,13 +29,13 @@ class NoteRepositoryImpl @Inject constructor(
                     entity.toDomain()
                 }
             }
-            .flowOn(Dispatchers.IO)
+            .flowOn(ioDispatcher)
     }
 
     override fun getNoteById(id: String): Flow<Note?> {
         return dao.getNoteById(id)
             .map { entity -> entity?.toDomain() }
-            .flowOn(Dispatchers.IO)
+            .flowOn(ioDispatcher)
     }
 
     override suspend fun deleteNote(id: String) {
